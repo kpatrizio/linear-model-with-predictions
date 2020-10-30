@@ -1,0 +1,78 @@
+---
+title: "linear model with predictions"
+author: "Kelly Patrizio"
+date: "10/29/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+This is the linear model with prediction problem.
+Predict strength scores using data from the following web site.  
+
+
+```{r}
+data <- read.csv(file="http://onlinestatbook.com/case_studies_rvls/physical_strength/data.txt",sep="",header=TRUE)
+```
+```{r include=FALSE}
+require(tidyverse)
+require(tigerstats)
+require(rgl)
+require(knitr)
+require(ggplot)
+```
+
+###Plot scatterplot
+
+```{r}
+plot(SIMS~ARM,data=data)
+```
+
+```{r}
+basicNN <- ggplot(data,aes(y=SIMS,x=ARM))
+```
+
+# now add the model fit to our plot
+
+```{r}
+model.1 <- lm(SIMS~ARM,data=data)
+summary.lm(model.1)
+New~data.frame(GRIP=94,ARM=88)
+predict.lm(model.1,data=New,interval = "prediction")
+
+
+
+```
+
+
+
+```{r}
+plot(SIMS~GRIP,data=data)
+```
+
+```{r}
+basicNN <- ggplot(data,aes(y=SIMS,x=GRIP))
+```
+
+```{r}
+model.2 <- lm(SIMS~ARM+GRIP,data=data)
+summary.lm(model.2)
+New~data.frame(GRIP=94,ARM=88)
+predict.lm(model.1,data=New,interval = "prediction")
+
+```
+
+```{r}
+model.3 <- lm(SIMS~ARM+GRIP,data=data)
+summary.lm(model.3)
+```
+
+```{r}
+model.3 <- lm(SIMS~ARM+GRIP,data=data)
+summary.lm(model.3)
+New~data.frame(GRIP=94,ARM=88)
+predict.lm(model.1,data=New,interval = "prediction")
+```
